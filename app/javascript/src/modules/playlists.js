@@ -14,6 +14,14 @@ const playlists = (state = initialState, action) => {
       return { ...state, isFetching: false, artists: action.artists }
     case GET_ARTISTS_FAILURE:
       return { ...state, isFetching: false }
+    case SELECT_ARTIST:
+      return { ...state, selectedArtistId: action.id}
+    case DISPLAY_ARTIST_SONGS_REQUEST:
+      return { ...state, isFetching: true }
+    case DISPLAY_ARTIST_SONGS_SUCCESS:
+      return { ...state, isFetching: false, artistSongs: action.songs }
+    case DISPLAY_ARTIST_SONGS_FAILURE:
+      return { ...state, isFetching: false }
     default:
       return state
   }
