@@ -2,8 +2,11 @@ import React from 'react'
 
 const ArtistTile = props => {
   return(
-    <div className='tile'>
-      <h3 onClick={props.handleSelect}>
+    <div
+      onClick={props.handleSelect}
+      className={`tile ${props.selected ? 'selected' : ''}`}
+      >
+      <h3>
         {props.artist.name}
       </h3>
     </div>
