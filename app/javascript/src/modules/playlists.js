@@ -69,7 +69,29 @@ const getArtists = () => {
   }
 }
 
+const getArtistSongs = (artistId) => {
+  return (dispatch) => {
+    dispatch(selectArtist(artistId))
+    dispatch(displayArtistSongsRequest())
+    return fetch(`api/v1/artists/${artistId}/songs`)
+    .then(response => {
+      if(response.ok) {
+        return response.json()
+      } else {
+        dispatch(displayArtistSongsFailure())
+        return { error: "Error fetch songs" }
+      }
+    })
+    .then(songs => {
+      if(!songs.error) {
+        dispatch(displayArtistSongsSuccess(songs))
+      }
+    })
+  }
+}
+
 export {
   playlists,
-  getArtists
+  getArtists,
+  getArtistSongs
 }
