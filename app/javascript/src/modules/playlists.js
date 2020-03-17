@@ -13,7 +13,7 @@ const playlists = (state = initialState, action) => {
     case GET_ARTISTS_SUCCESS:
       return { ...state, isFetching: false, artists: action.artists }
     case GET_ARTISTS_FAILURE:
-      return { ...state, isFetching: true }
+      return { ...state, isFetching: false }
     default:
       return state
   }
