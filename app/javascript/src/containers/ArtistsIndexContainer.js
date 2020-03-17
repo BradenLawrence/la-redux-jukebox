@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { getArtists } from '../modules/playlists'
+import { getArtists, getArtistSongs } from '../modules/playlists'
 import ArtistTile from '../components/ArtistTile'
 
 class ArtistsIndexContainer extends Component {
@@ -39,7 +39,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    getArtists: () => dispatch(getArtists())
+    getArtists: () => dispatch(getArtists()),
+    getArtistSongs: (artistId) => dispatch(getArtistSongs(artistId))
   }
 }
 
