@@ -28,6 +28,23 @@ const getArtistsSuccess = (artists) => ({ type: GET_ARTISTS_SUCCESS, artists })
 const GET_ARTISTS_FAILURE = "GET_ARTISTS_FAILURE"
 const getArtistsFailure = () => ({ type: GET_ARTISTS_FAILURE })
 
+const getArtists = () => {
+  return (dispatch) => {
+    dispatch(getArtistsRequest())
+    return fetch("api/v1/artists")
+    .then(response => {
+      if(response.ok) {
+        return response.json()
+      } else {
+        dispatch(getArtistsFailure())
+        return { error: "Error fetching artists" }
+      }
+    })
+    .then(artists => dispatch(getArtistsSuccess(artists)))
+  }
+}
+
 export {
-  playlists
+  playlists,
+  getArtists
 }
