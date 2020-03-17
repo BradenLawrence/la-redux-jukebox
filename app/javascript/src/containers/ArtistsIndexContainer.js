@@ -14,10 +14,13 @@ class ArtistsIndexContainer extends Component {
 
   render() {
     const artistTiles = this.props.artists.map(artist => {
+      const selected = this.props.selectedId === artist.id
+
       return(
         <ArtistTile
           key={artist.id}
           artist={artist}
+          selected={selected}
         />
       )
     })
@@ -33,7 +36,8 @@ class ArtistsIndexContainer extends Component {
 
 const mapStateToProps = state => {
   return {
-    artists: state.playlists.artists
+    artists: state.playlists.artists,
+    selectedId: state.playlists.selectedArtistId
   }
 }
 
