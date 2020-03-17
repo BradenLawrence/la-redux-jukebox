@@ -9,10 +9,7 @@ class SongsIndexContainer extends Component {
   }
 
   render() {
-    // change this variable below once this container has access to the `artistSongs` in state
-    const songs = []
-    
-    const songTiles = songs.map(song => {
+    const songTiles = this.props.artistSongs.map(song => {
       const addSong = () => {
         // add your code here
       }
@@ -35,4 +32,7 @@ class SongsIndexContainer extends Component {
   }
 }
 
-export default SongsIndexContainer
+const mapStateToProps = (state) => {
+  return { artistSongs: state.playlists.artistSongs }
+}
+export default connect(mapStateToProps)(SongsIndexContainer)
