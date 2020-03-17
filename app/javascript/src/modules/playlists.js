@@ -36,6 +36,23 @@ const getArtistsSuccess = (artists) => ({ type: GET_ARTISTS_SUCCESS, artists })
 const GET_ARTISTS_FAILURE = "GET_ARTISTS_FAILURE"
 const getArtistsFailure = () => ({ type: GET_ARTISTS_FAILURE })
 
+const SELECT_ARTIST = "SELECT_ARTIST"
+const selectArtist = (id) => ({ type: SELECT_ARTIST, id })
+
+const DISPLAY_ARTIST_SONGS_REQUEST = "DISPLAY_ARTIST_SONGS_REQUEST"
+const displayArtistSongsRequest = () => ({ type: DISPLAY_ARTIST_SONGS_REQUEST })
+
+const DISPLAY_ARTIST_SONGS_SUCCESS = "DISPLAY_ARTIST_SONGS_SUCCESS"
+const displayArtistSongsSuccess = (songs) => {
+  return {
+    type: DISPLAY_ARTIST_SONGS_SUCCESS,
+    songs
+  }
+}
+
+const DISPLAY_ARTIST_SONGS_FAILURE = "DISPLAY_ARTIST_SONGS_FAILURE"
+const displayArtistSongsFailure = () => ({ type: DISPLAY_ARTIST_SONGS_FAILURE })
+
 const getArtists = () => {
   return (dispatch) => {
     dispatch(getArtistsRequest())
