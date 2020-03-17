@@ -1,0 +1,8 @@
+---
+title: "Redux Jukebox"
+type: "challenge"
+description: "Make a playlist of the best music around."
+tags: "javascript, redux, rails, react, thunks"
+ignore:
+- "redux-jukebox.md"
+- "node_modules/"
