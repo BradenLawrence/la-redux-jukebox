@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-
+import { postPlayListSong } from '../modules/playlists'
 import SongTile from '../components/SongTile'
 
 class SongsIndexContainer extends Component {
@@ -35,4 +35,14 @@ class SongsIndexContainer extends Component {
 const mapStateToProps = (state) => {
   return { artistSongs: state.playlists.artistSongs }
 }
-export default connect(mapStateToProps)(SongsIndexContainer)
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    postPlayListSong: (songData) => dispatch(postPlayListSong(songData))
+  }
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(SongsIndexContainer)
