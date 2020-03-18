@@ -87,6 +87,20 @@ const postPlaylistSongSuccess = (playlistSong) => {
 const POST_PLAYLIST_SONG_FAILURE = "POST_PLAYLIST_SONG_FAILURE"
 const postPlaylistSongFailure = () => ({ type: POST_PLAYLIST_SONG_FAILURE })
 
+const DESTROY_PLAYLIST_SONG_REQUEST = "DESTROY_PLAYLIST_SONG_REQUEST"
+const destroyPlaylistSongRequest = () => ({ type: DESTROY_PLAYLIST_SONG_REQUEST })
+
+const DESTROY_PLAYLIST_SONG_SUCCESS = "DESTROY_PLAYLIST_SONG_SUCCESS"
+const destroyPlaylistSongSuccess = (playlistSong) => {
+  return {
+    type: DESTROY_PLAYLIST_SONG_SUCCESS,
+    playlistSong
+  }
+}
+
+const DESTROY_PLAYLIST_SONG_FAILURE = "DESTROY_PLAYLIST_SONG_FAILURE"
+const destroyPlaylistSongFailure = () => ({ type: DESTROY_PLAYLIST_SONG_FAILURE })
+
 // Thunk Actions
 const getArtists = () => {
   return (dispatch) => {
