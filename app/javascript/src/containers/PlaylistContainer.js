@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-
+import { destroyPlaylistSong } from '../modules/playlists'
 import SongTile from '../components/SongTile'
 
 class PlaylistContainer extends Component {
@@ -35,4 +35,13 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps)(PlaylistContainer)
+const mapDispatchToProps = (dispatch) => {
+  return {
+    destroyPlaylistSong: (songData) => dispatch(destroyPlaylistSong(songData))
+  }
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(PlaylistContainer)
