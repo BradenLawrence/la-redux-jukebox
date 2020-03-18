@@ -6,6 +6,7 @@ const initialState = {
   isFetching: false
 }
 
+// Reducer
 const playlists = (state = initialState, action) => {
   switch(action.type) {
     case GET_ARTISTS_REQUEST:
@@ -27,6 +28,7 @@ const playlists = (state = initialState, action) => {
   }
 }
 
+// Action Creators
 const GET_ARTISTS_REQUEST = "GET_ARTISTS_REQUEST"
 const getArtistsRequest = () => ({ type: GET_ARTISTS_REQUEST })
 
@@ -53,6 +55,8 @@ const displayArtistSongsSuccess = (songs) => {
 const DISPLAY_ARTIST_SONGS_FAILURE = "DISPLAY_ARTIST_SONGS_FAILURE"
 const displayArtistSongsFailure = () => ({ type: DISPLAY_ARTIST_SONGS_FAILURE })
 
+
+// Thunk Actions
 const getArtists = () => {
   return (dispatch) => {
     dispatch(getArtistsRequest())
