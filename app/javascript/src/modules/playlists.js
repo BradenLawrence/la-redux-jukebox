@@ -64,6 +64,19 @@ const displayArtistSongsSuccess = (songs) => {
 const DISPLAY_ARTIST_SONGS_FAILURE = "DISPLAY_ARTIST_SONGS_FAILURE"
 const displayArtistSongsFailure = () => ({ type: DISPLAY_ARTIST_SONGS_FAILURE })
 
+const POST_PLAYLIST_SONG_REQUEST = "POST_PLAYLIST_SONG_REQUEST"
+const postPlaylistSongRequest = () => ({ type: POST_PLAYLIST_SONG_REQUEST })
+
+const POST_PLAYLIST_SONG_SUCCESS = "POST_PLAYLIST_SONG_SUCCESS"
+const postPlaylistSongSuccess = (playlistSong) => {
+  return {
+    type: POST_PLAYLIST_SONG_SUCCESS,
+    playlistSong
+  }
+}
+
+const POST_PLAYLIST_SONG_FAILURE = "POST_PLAYLIST_SONG_FAILURE"
+const postPlaylistSongFailure = () => ({ type: POST_PLAYLIST_SONG_FAILURE })
 
 // Thunk Actions
 const getArtists = () => {
