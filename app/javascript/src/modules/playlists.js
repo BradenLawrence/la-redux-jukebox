@@ -23,6 +23,15 @@ const playlists = (state = initialState, action) => {
       return { ...state, isFetching: false, artistSongs: action.songs }
     case DISPLAY_ARTIST_SONGS_FAILURE:
       return { ...state, isFetching: false }
+    case POST_PLAYLIST_SONG_REQUEST:
+      return { ...state, isFetching: true }
+    case POST_PLAYLIST_SONG_SUCCESS:
+      return { ...state, isFetching: false, playlistSongs: [
+        ...state.playlistSongs,
+        action.playlistSong
+      ]}
+    case POST_PLAYLIST_SONG_FAILURE:
+      return { ...state, isFetching: false }
     default:
       return state
   }
