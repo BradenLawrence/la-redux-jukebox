@@ -1,11 +1,15 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { destroyPlaylistSong } from '../modules/playlists'
+import { getPlaylistSongs, destroyPlaylistSong } from '../modules/playlists'
 import SongTile from '../components/SongTile'
 
 class PlaylistContainer extends Component {
   constructor(props) {
     super(props)
+  }
+
+  componentDidMount() {
+    this.props.getPlaylistSongs()
   }
 
   render() {
@@ -40,6 +44,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    getPlaylistSongs: () => dispatch(getPlaylistSongs()),
     destroyPlaylistSong: (songData) => dispatch(destroyPlaylistSong(songData))
   }
 }
