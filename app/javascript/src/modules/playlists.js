@@ -163,6 +163,26 @@ const getArtistSongs = (artistId) => {
   }
 }
 
+const getPlaylistSongs = () => {
+  return (dispatch) => {
+    dispatch(getPlaylistSongsRequest())
+    return fetch("api/v1/playlist_songs")
+    .then(response => {
+      if(response.ok) {
+        return response.json()
+      } else {
+        dispatch(getPlaylistSongsFailure())
+        return { error: "Error fetching playlist" }
+      }
+    })
+    .then(playlistSongs => {
+      if(!playlistSongs.error) {
+        dispatch(getPlaylistSongsSuccess(playlistSongs))
+      }
+    })
+  }
+}
+
 const postPlayListSong = (songData) => {
   return (dispatch) => {
     dispatch(postPlaylistSongRequest())
@@ -215,6 +235,7 @@ export {
   playlists,
   getArtists,
   getArtistSongs,
+  getPlaylistSongs,
   postPlayListSong,
   destroyPlaylistSong
 }
