@@ -83,6 +83,20 @@ const displayArtistSongsSuccess = (songs) => {
 const DISPLAY_ARTIST_SONGS_FAILURE = "DISPLAY_ARTIST_SONGS_FAILURE"
 const displayArtistSongsFailure = () => ({ type: DISPLAY_ARTIST_SONGS_FAILURE })
 
+const GET_PLAYLIST_SONGS_REQUEST = "GET_PLAYLIST_SONGS_REQUEST"
+const getPlaylistSongsRequest = () => ({ type: GET_PLAYLIST_SONGS_REQUEST })
+
+const GET_PLAYLIST_SONGS_SUCCESS = "GET_PLAYLIST_SONGS_SUCCESS"
+const getPlaylistSongsSuccess = (playlistSongs) => {
+  return {
+    type: GET_PLAYLIST_SONGS_SUCCESS,
+    playlistSongs
+  }
+}
+
+const GET_PLAYLIST_SONGS_FAILURE = "GET_PLAYLIST_SONGS_FAILURE"
+const getPlaylistSongsFailure = () => ({ type: GET_PLAYLIST_SONGS_FAILURE })
+
 const POST_PLAYLIST_SONG_REQUEST = "POST_PLAYLIST_SONG_REQUEST"
 const postPlaylistSongRequest = () => ({ type: POST_PLAYLIST_SONG_REQUEST })
 
