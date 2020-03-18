@@ -10,12 +10,15 @@ class PlaylistContainer extends Component {
 
   render() {
     const songTiles = this.props.playlistSongs.map(playlistSong => {
+      const handleClick = () => {
+        this.props.destroyPlaylistSong(playlistSong)
+      }
       return(
         <SongTile
           key={playlistSong.id}
           song={playlistSong.song}
-          // below can be left alone until working on Exceeds functionality
-          handleClick={() => {}}
+          type='delete'
+          handleClick={handleClick}
         />
       )
     })
