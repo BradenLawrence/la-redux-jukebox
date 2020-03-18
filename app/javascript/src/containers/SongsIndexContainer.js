@@ -10,8 +10,9 @@ class SongsIndexContainer extends Component {
 
   render() {
     const songTiles = this.props.artistSongs.map(song => {
-      const addSong = () => {
-        // add your code here
+      const addSong = (event) => {
+        event.preventDefault()
+        this.props.postPlayListSong(song)
       }
       return(
         <SongTile
