@@ -17,11 +17,11 @@ const playlists = (state = initialState, action) => {
       return { ...state, isFetching: false }
     case SELECT_ARTIST:
       return { ...state, selectedArtistId: action.id}
-    case DISPLAY_ARTIST_SONGS_REQUEST:
+    case GET_ARTIST_SONGS_REQUEST:
       return { ...state, isFetching: true }
-    case DISPLAY_ARTIST_SONGS_SUCCESS:
+    case GET_ARTIST_SONGS_SUCCESS:
       return { ...state, isFetching: false, artistSongs: action.songs }
-    case DISPLAY_ARTIST_SONGS_FAILURE:
+    case GET_ARTIST_SONGS_FAILURE:
       return { ...state, isFetching: false }
     case GET_PLAYLIST_SONGS_REQUEST:
       return { ...state, isFetching: true }
@@ -69,19 +69,19 @@ const getArtistsFailure = () => ({ type: GET_ARTISTS_FAILURE })
 const SELECT_ARTIST = "SELECT_ARTIST"
 const selectArtist = (id) => ({ type: SELECT_ARTIST, id })
 
-const DISPLAY_ARTIST_SONGS_REQUEST = "DISPLAY_ARTIST_SONGS_REQUEST"
-const displayArtistSongsRequest = () => ({ type: DISPLAY_ARTIST_SONGS_REQUEST })
+const GET_ARTIST_SONGS_REQUEST = "GET_ARTIST_SONGS_REQUEST"
+const getArtistSongsRequest = () => ({ type: GET_ARTIST_SONGS_REQUEST })
 
-const DISPLAY_ARTIST_SONGS_SUCCESS = "DISPLAY_ARTIST_SONGS_SUCCESS"
-const displayArtistSongsSuccess = (songs) => {
+const GET_ARTIST_SONGS_SUCCESS = "GET_ARTIST_SONGS_SUCCESS"
+const getArtistSongsSuccess = (songs) => {
   return {
-    type: DISPLAY_ARTIST_SONGS_SUCCESS,
+    type: GET_ARTIST_SONGS_SUCCESS,
     songs
   }
 }
 
-const DISPLAY_ARTIST_SONGS_FAILURE = "DISPLAY_ARTIST_SONGS_FAILURE"
-const displayArtistSongsFailure = () => ({ type: DISPLAY_ARTIST_SONGS_FAILURE })
+const GET_ARTIST_SONGS_FAILURE = "GET_ARTIST_SONGS_FAILURE"
+const getArtistSongsFailure = () => ({ type: GET_ARTIST_SONGS_FAILURE })
 
 const GET_PLAYLIST_SONGS_REQUEST = "GET_PLAYLIST_SONGS_REQUEST"
 const getPlaylistSongsRequest = () => ({ type: GET_PLAYLIST_SONGS_REQUEST })
@@ -145,19 +145,19 @@ const getArtists = () => {
 const getArtistSongs = (artistId) => {
   return (dispatch) => {
     dispatch(selectArtist(artistId))
-    dispatch(displayArtistSongsRequest())
+    dispatch(getArtistSongsRequest())
     return fetch(`api/v1/artists/${artistId}/songs`)
     .then(response => {
       if(response.ok) {
         return response.json()
       } else {
-        dispatch(displayArtistSongsFailure())
+        dispatch(getArtistSongsFailure())
         return { error: "Error fetch songs" }
       }
     })
     .then(songs => {
       if(!songs.error) {
-        dispatch(displayArtistSongsSuccess(songs))
+        dispatch(getArtistSongsSuccess(songs))
       }
     })
   }
