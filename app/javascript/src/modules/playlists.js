@@ -116,8 +116,35 @@ const getArtistSongs = (artistId) => {
   }
 }
 
+const postPlayListSong = (songData) => {
+  return (dispatch) => {
+    dispatch(postPlaylistSongRequest())
+    return fetch(`api/v1/songs/${songData.id}/playlist_songs`, {
+      method: "POST",
+      body: JSON.stringify(songData),
+      credentials: "same-origin",
+      headers: {
+        "Accept": "application/json",
+        "Content-type": "application/json"
+      }
+    })
+    .then(response => {
+      if(response.ok) {
+        return response.json()
+      } else {
+        dispatch(postPlaylistSongFailure())
+        return { error: "Error adding song to playlist" }
+      }
+    })
+    .then(playlistSong => {
+      dispatch(postPlaylistSongSuccess(playlistSong))
+    })
+  }
+}
+
 export {
   playlists,
   getArtists,
-  getArtistSongs
+  getArtistSongs,
+  postPlayListSong
 }
