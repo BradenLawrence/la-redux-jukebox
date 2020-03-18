@@ -32,6 +32,15 @@ const playlists = (state = initialState, action) => {
       ]}
     case POST_PLAYLIST_SONG_FAILURE:
       return { ...state, isFetching: false }
+    case DESTROY_PLAYLIST_SONG_REQUEST:
+      return { ...state, isFetching: true }
+    case DESTROY_PLAYLIST_SONG_SUCCESS:
+      const updatedPlaylist = state.playlistSongs.filter(song => {
+        return song.id !== action.playlistSong.id
+      })
+      return { ...state, isFetching: false, playlistSongs: updatedPlaylist }
+    case DESTROY_PLAYLIST_SONG_FAILURE:
+      return { ...state, isFetching: false }
     default:
       return state
   }
