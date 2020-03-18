@@ -165,9 +165,32 @@ const postPlayListSong = (songData) => {
   }
 }
 
+const destroyPlaylistSong = (songData) => {
+  return (dispatch) => {
+    dispatch(destroyPlaylistSongRequest)
+    return fetch(`api/v1/playlist_songs/${songData.id}`, {
+      method: "DELETE",
+      headers: {
+        "Accept": "application/json",
+        "Content-type": "application/json"
+      }
+    })
+    .then(response => {
+      if(response.ok) {
+        dispatch(destroyPlaylistSongSuccess(songData))
+        return { notice: "Song successfully deleted" }
+      } else {
+        dispatch(destroyPlaylistSongFailure())
+        return { error: "Error deleting song" }
+      }
+    })
+  }
+}
+
 export {
   playlists,
   getArtists,
   getArtistSongs,
-  postPlayListSong
+  postPlayListSong,
+  destroyPlaylistSong
 }
