@@ -34,7 +34,7 @@ class SongsIndexContainer extends Component {
 }
 
 const mapStateToProps = (state) => {
-  return { artistSongs: state.playlists.artistSongs }
+  return { artistSongs: state.library.artistSongs }
 }
 
 const mapDispatchToProps = (dispatch) => {
